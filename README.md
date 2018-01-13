@@ -21,8 +21,9 @@ You can run the following command in `my-cluster` to make your variables definit
 $ mv terraform.tfvars.example terraform.tfvars # variables defined in terraform.tfvars will be automatically picked up by terraform during the run
 ```
 
-Once the required variables are defined, use the command below to create a Kubernetes cluster with 2 worker nodes:
+Once the required variables are defined, use the commands below to create a Kubernetes cluster with 2 worker nodes:
 ```bash
+$ terraform init
 $ terraform apply
 ```
 
