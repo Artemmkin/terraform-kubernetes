@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "fullname" . }}-config
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  external_scheme: https
+  external_hostname: gitlab.{{ .Values.baseDomain }}
+  registry_external_scheme: https
+  registry_external_hostname: registry.{{ .Values.baseDomain }}
+  mattermost_external_scheme: https
+  mattermost_external_hostname: mattermost.{{ .Values.baseDomain }}
+  mattermost_app_uid: {{ .Values.mattermostAppUID }}
+  postgres_user: gitlab
+  postgres_db: gitlab_production
+  pages_external_scheme: {{ .Values.pagesExternalScheme }}
+  pages_external_domain: {{ .Values.pagesExternalDomain }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ template "fullname" . }}-secrets
+  labels:
+    app: {{ template "fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+data:
+  postgres_password: {{ .Values.postgresPassword }}
+  initial_shared_runners_registration_token: {{ default "" .Values.initialSharedRunnersRegistrationToken | b64enc | quote }}
+  mattermost_app_secret: {{ .Values.mattermostAppSecret | b64enc | quote }}
+{{- if .Values.gitlabEELicense }}
+  gitlab_ee_license: {{ .Values.gitlabEELicense | b64enc | quote }}
+{{- end }}
