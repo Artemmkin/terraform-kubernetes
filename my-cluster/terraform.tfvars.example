@@ -1,0 +1,8 @@
+project_id = "example-123456"
+region = "europe-west1"
+
+name = "my-cluster"
+description = "Test cluster to showcase CI/CD with k8s, Gitlab CI, and Helm"
+zone = "europe-west1-b"
+
+ntw_name = "my-cluster-network"
