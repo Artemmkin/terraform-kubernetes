@@ -1,5 +1,4 @@
 ## Table of Contents
-* [Table of Content](#table-of-content)
 * [About the repo](#about-the-repo)
 * [Quick start](#quick-start)
 * [Repository structure](#repository-structure)
