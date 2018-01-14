@@ -1,7 +1,11 @@
-## Table of Content
+## Table of Contents
+* [Table of Content](#table-of-content)
 * [About the repo](#about-the-repo)
 * [Quick start](#quick-start)
 * [Repository structure](#repository-structure)
+   * [terraform-modules](#terraform-modules)
+   * [my-cluster](#my-cluster)
+   * [accounts](#accounts)
 
 ## About the repo
 This repository contains an example of deploying and managing [Kubernetes](https://kubernetes.io/) clusters to [Google Cloud Platform](https://cloud.google.com/) (GCP) in a reliable and repeatable way.
@@ -63,7 +67,8 @@ $ gcloud container clusters get-credentials my-cluster --zone europe-west1-b --p
     └── vpc
 ```
 
-**terraform-modules** contains reusable pieces of terraform code which help us manage our configuration more efficiently by avoiding code repetition and reducing the volume of configuration.
+### terraform-modules
+The folder contains reusable pieces of terraform code which help us manage our configuration more efficiently by avoiding code repetition and reducing the volume of configuration.
 
 The folder contains 4 modules at the moment of writing:
 
@@ -72,6 +77,7 @@ The folder contains 4 modules at the moment of writing:
 * `node-pool` module is used to create [Node Pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools) which is mechanism to add extra nodes of required configuration to a running Kubernetes cluster. Note that nodes which configuration is specified in the `cluster` module become the _default_ node pool.  
 * `vpc` module is used to create new Virtual Private Cloud (VPC) networks.
 
+### my-cluster
 Inside the **my-cluster** folder, I put terraform configuration for the creation and management of an example of Kubernetes cluster.
 Important files here:
 
@@ -95,4 +101,5 @@ It has 4 subdirectories inside:
 	$ kubectl apply -f ./deploy-app-example/nginx-example.yml
 	```
 
-**accounts** is another top level folder in this project. It has a separate set of terraform files which are used to manage access accounts to our clusters. For example, you may want to create a service account for your CI tool to allow it to deploy applications to the cluster.
+### accounts
+This is another top level folder in this project. It has a separate set of terraform files which are used to manage access accounts to our clusters. For example, you may want to create a service account for your CI tool to allow it to deploy applications to the cluster.
