@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: reddit-stage
+  name: raddit-stage
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: reddit-prod
+  name: raddit-prod
 ---
 apiVersion: v1
 kind: Namespace
