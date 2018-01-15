@@ -10,7 +10,7 @@ module "my_cluster" {
   name               = "${var.name}"
   description        = "${var.description}"
   zone               = "${var.zone}"
-  initial_node_count = 2
+  initial_node_count = "${var.initial_node_count}"
   network            = "${module.my_network.name}"
 }
 

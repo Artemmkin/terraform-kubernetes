@@ -27,3 +27,8 @@ variable "description" {
 variable "zone" {
   description = "The zone the master and nodes specified in initial_node_count should be created in"
 }
+
+variable "initial_node_count" {
+  description = "Number of nodes in the cluster"
+  default     = 2
+}
