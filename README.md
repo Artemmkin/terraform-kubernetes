@@ -5,6 +5,7 @@
    * [terraform-modules](#terraform-modules)
    * [my-cluster](#my-cluster)
    * [accounts](#accounts)
+* [CI/CD example with Gitlab CI and Helm](#cicd-example-with-gitlab-ci-and-helm)
 
 ## About the repo
 This repository contains an example of deploying and managing [Kubernetes](https://kubernetes.io/) clusters to [Google Cloud Platform](https://cloud.google.com/) (GCP) in a reliable and repeatable way.
@@ -102,3 +103,6 @@ It has 4 subdirectories inside:
 
 ### accounts
 This is another top level folder in this project. It has a separate set of terraform files which are used to manage access accounts to our clusters. For example, you may want to create a service account for your CI tool to allow it to deploy applications to the cluster.
+
+## CI/CD example with Gitlab CI and Helm
+For an example of building a CI/CD pipeline with Kubernetes, Gitlab CI, and Helm see [this](http://artemstar.com/2018/01/15/cicd-with-kubernetes-and-gitlab/) blog post.
