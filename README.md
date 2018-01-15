@@ -9,7 +9,7 @@
 ## About the repo
 This repository contains an example of deploying and managing [Kubernetes](https://kubernetes.io/) clusters to [Google Cloud Platform](https://cloud.google.com/) (GCP) in a reliable and repeatable way.
 
-I use [Terraform](https://www.terraform.io/) to describe the desired state of our infrastructure, thus implementing Infrastructure as Code (IaC) approach.
+[Terraform](https://www.terraform.io/) is used to describe the desired state of the infrastructure, thus implementing Infrastructure as Code (IaC) approach.
 
 [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) (GKE) service is used for cluster deployment. Since Google announced that [they had eliminated the cluster management fees for GKE](https://cloudplatform.googleblog.com/2017/11/Cutting-Cluster-Management-Fees-on-Google-Kubernetes-Engine.html), it became the safest and cheapest way to run a Kubernetes cluster on GCP, because you only pay for the nodes (compute instances) running in your cluster and Google abstracts away and takes care of the master control plane.  
 
@@ -24,7 +24,7 @@ You can run the following command in `my-cluster` to make your variables definit
 $ mv terraform.tfvars.example terraform.tfvars # variables defined in terraform.tfvars will be automatically picked up by terraform during the run
 ```
 
-Once the required variables are defined, use the commands below to create a Kubernetes cluster with 2 worker nodes:
+Once the required variables are defined, use the commands below to create a Kubernetes cluster:
 ```bash
 $ terraform init
 $ terraform apply
@@ -90,7 +90,7 @@ Important files here:
 
 * `k8-confing` folder contains Kubernetes configuration files (**manifests**) which are used to define configuration of the running Kubernetes cluster.
 It has 4 subdirectories inside:
-    * `env-namespaces` contains manifests for creating [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/), or virtual environments withing the cluster, for running our services. In this example, `raddit-namespaces.yml` file is used to describe 3 namespaces: `raddit-stage` and `raddit-prod` for running [example application](https://github.com/Artemmkin/microservices-raddit) (which is called raddit in this case) in different virtual environments, and `infra` namespace for running services vital to our infrastructure like CI/CD, monitoring, or logging software.
+    * `env-namespaces` contains manifests for creating [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/), or virtual environments withing the cluster, for running our services. In this example, `raddit-namespaces.yml` file is used to describe 3 namespaces: `raddit-stage` and `raddit-prod` for running [example application](https://github.com/Artemmkin/kubernetes-gitlab-example) (which is called raddit in this case) in different virtual environments, and `infra` namespace for running services vital to our infrastructure like CI/CD, monitoring, or logging software.
     * `storage-classes` folder is used to create storage classes that could be then used in [dynamic volume provisioning](http://blog.kubernetes.io/2017/03/dynamic-provisioning-and-storage-classes-kubernetes.html) for our applications.
     * `kube-lego` folder has the configuration required to run [kube-lego](https://github.com/jetstack/kube-lego) service which is used for automatic SSL certificates requests for our services running inside the cluster.
     * `charts` contains [Helm](https://github.com/kubernetes/helm) charts for deploying infra services. In this case it only has a chart for deploying [Gitlab CI](https://about.gitlab.com/features/gitlab-ci-cd/) along with a Runner.
